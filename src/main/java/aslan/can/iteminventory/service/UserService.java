@@ -1,6 +1,9 @@
 package aslan.can.iteminventory.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -23,5 +26,9 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
+    }
+
+    public Optional<User> getUserByID(UUID id) {
+        return userDao.selectUserByID(id);
     }
 }

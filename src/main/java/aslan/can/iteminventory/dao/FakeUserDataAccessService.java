@@ -2,6 +2,7 @@ package aslan.can.iteminventory.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.stereotype.Repository;
 import aslan.can.iteminventory.model.User;
@@ -20,5 +21,22 @@ public class FakeUserDataAccessService implements UserDao {
     @Override
     public List<User> getAllUsers() {
         return DB;
+    }
+
+    @Override
+    public Optional<User> selectUserByID(UUID id) {
+        return DB.stream().filter(user -> user.getId().equals(id)).findFirst();
+    }
+
+    @Override
+    public int deleteUserByID(UUID id) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int updateUserByID(UUID id, User user) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }
