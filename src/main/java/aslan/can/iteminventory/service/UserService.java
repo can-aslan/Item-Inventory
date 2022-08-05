@@ -31,4 +31,12 @@ public class UserService {
     public Optional<User> getUserByID(UUID id) {
         return userDao.selectUserByID(id);
     }
+
+    public int deleteUserByID(UUID id) {
+        return userDao.deleteUserByID(id);
+    }
+
+    public int updateUserByID(UUID id, User newUser) {
+        return userDao.updateUserByID(id, newUser);
+    }
 }
