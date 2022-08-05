@@ -12,7 +12,13 @@ public class User {
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("userName") String userName) {
         this.id = id;
-        this.userName = userName;
+
+        if (userName == null || userName.isEmpty()) {
+            this.userName = "No Username Provided";
+        }
+        else {
+            this.userName = userName;
+        }
     }
 
     public UUID getId() {
