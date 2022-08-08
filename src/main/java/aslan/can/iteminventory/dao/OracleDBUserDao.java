@@ -22,6 +22,7 @@ public class OracleDBUserDao implements UserDao {
 
             PreparedStatement insertStatement = dbConnection.prepareStatement("INSERT INTO users(user_uuid, username) VALUES('" + id + "', '" + user.getUserName() + "')");
             insertStatement.executeQuery();
+            dbConnection.close();
             return 1;
         }
         catch (Exception e) {
@@ -47,6 +48,8 @@ public class OracleDBUserDao implements UserDao {
             while ( result.next() ) {
                 allUsers.add(new User(UUID.fromString(result.getString(2)), result.getString(3)));
             }
+
+            dbConnection.close();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -72,6 +75,8 @@ public class OracleDBUserDao implements UserDao {
             while ( result.next() ) {
                 allUsers.add(new User(UUID.fromString(result.getString(2)), result.getString(3)));
             }
+
+            dbConnection.close();
         }
         catch (Exception e) {
             e.printStackTrace();
