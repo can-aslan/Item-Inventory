@@ -11,8 +11,6 @@ import java.sql.*;
 @Repository("oracle")
 public class OracleDBUserDao implements UserDao {
 
-    private static List<User> DB = new ArrayList<>();
-
     @Override
     public int insertUser(UUID id, User user) {
         try {
