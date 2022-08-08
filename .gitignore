@@ -33,3 +33,4 @@ build/
 .vscode/
 
 /src/main/java/aslan/can/iteminventory/AppProperties.java
+/src/main/resources/application.properties
