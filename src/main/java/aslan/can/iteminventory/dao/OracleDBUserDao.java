@@ -71,21 +71,21 @@ public class OracleDBUserDao implements UserDao {
 
     @Override
     public Optional<User> selectUserByID(UUID id) {
-        ArrayList<User> allUsers = new ArrayList<User>();
+        ArrayList<User> selectedUser = new ArrayList<User>();
 
         try {
             PreparedStatement selectUserByIDStatement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_uuid='" + id + "'");
             ResultSet result = selectUserByIDStatement.executeQuery();
 
             while ( result.next() ) {
-                allUsers.add(new User(UUID.fromString(result.getString(2)), result.getString(3)));
+                selectedUser.add(new User(UUID.fromString(result.getString(2)), result.getString(3)));
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-        return allUsers.stream().findFirst();
+        return selectedUser.stream().findFirst();
     }
 
     @Override
