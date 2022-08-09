@@ -22,7 +22,8 @@ public class OracleDBUserDao implements UserDao {
                 AppProperties.OraclePassword);
             
             try {
-                PreparedStatement tableAccessStatement = dbConnection.prepareStatement("SELECT * FROM users");
+                PreparedStatement tableAccessStatement = dbConnection.prepareStatement(
+                    "SELECT * FROM users");
                 tableAccessStatement.executeQuery();
             }
             catch (SQLSyntaxErrorException e) {
@@ -40,7 +41,8 @@ public class OracleDBUserDao implements UserDao {
     @Override
     public int insertUser(UUID id, User user) {
         try {
-            PreparedStatement insertStatement = dbConnection.prepareStatement("INSERT INTO users(user_uuid, username) VALUES('" + id + "', '" + user.getUserName() + "')");
+            PreparedStatement insertStatement = dbConnection.prepareStatement(
+                "INSERT INTO users(user_uuid, username) VALUES('" + id + "', '" + user.getUserName() + "')");
             insertStatement.executeQuery();
             return 1;
         }
@@ -55,7 +57,8 @@ public class OracleDBUserDao implements UserDao {
         ArrayList<User> allUsers = new ArrayList<User>();
 
         try {
-            PreparedStatement getAllUsersStatement = dbConnection.prepareStatement("SELECT * FROM users");
+            PreparedStatement getAllUsersStatement = dbConnection.prepareStatement(
+                "SELECT * FROM users");
             ResultSet result = getAllUsersStatement.executeQuery();
 
             while ( result.next() ) {
@@ -74,7 +77,8 @@ public class OracleDBUserDao implements UserDao {
         ArrayList<User> selectedUser = new ArrayList<User>();
 
         try {
-            PreparedStatement selectUserByIDStatement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_uuid='" + id + "'");
+            PreparedStatement selectUserByIDStatement = dbConnection.prepareStatement(
+                "SELECT * FROM users WHERE user_uuid='" + id + "'");
             ResultSet result = selectUserByIDStatement.executeQuery();
 
             while ( result.next() ) {
@@ -96,7 +100,8 @@ public class OracleDBUserDao implements UserDao {
         }
         
         try {
-            PreparedStatement deleteStatement = dbConnection.prepareStatement("DELETE FROM users WHERE users.user_uuid='" + id + "'");
+            PreparedStatement deleteStatement = dbConnection.prepareStatement(
+                "DELETE FROM users WHERE users.user_uuid='" + id + "'");
             deleteStatement.executeQuery();
             return 1;
         }
@@ -108,19 +113,20 @@ public class OracleDBUserDao implements UserDao {
 
     @Override
     public int updateUserByID(UUID id, User user) {
-        /*
-        return selectUserByID(id).map(userToUpdate -> {
-            int indexOfUserToUpdate = DB.indexOf(userToUpdate);
-            if (indexOfUserToUpdate < 0) return 0; // If userToUpdate is not found, return 0
+        // If the user does not exist, return 0
+        if (selectUserByID(id).isEmpty()) {
+            return 0;
+        }
 
-            // Update user
-            DB.set(indexOfUserToUpdate, new User(id, user.getUserName()));
-
+        try {
+            PreparedStatement updateStatement = dbConnection.prepareStatement(
+                "UPDATE users SET users.username='" + user.getUserName() + "' WHERE users.user_uuid='" + id + "'");
+            updateStatement.executeQuery();
             return 1;
-        }).orElse(0);
-        */
-
-        // TODO
-        return 0;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }
