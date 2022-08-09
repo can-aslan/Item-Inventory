@@ -90,19 +90,20 @@ public class OracleDBUserDao implements UserDao {
 
     @Override
     public int deleteUserByID(UUID id) {
-        /*
-        Optional<User> userToDelete = selectUserByID(id);
-
-        // If the specified user is not found, return 0
-        if (userToDelete.isEmpty()) return 0;
-
-        // Delete the specified user
-        DB.remove(userToDelete.get());
-        return 1;
-        */
-
-        // TODO
-        return 0;
+        // If the user does not exist, return 0
+        if (selectUserByID(id).isEmpty()) {
+            return 0;
+        }
+        
+        try {
+            PreparedStatement deleteStatement = dbConnection.prepareStatement("DELETE FROM users WHERE users.user_uuid='" + id + "'");
+            deleteStatement.executeQuery();
+            return 1;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
