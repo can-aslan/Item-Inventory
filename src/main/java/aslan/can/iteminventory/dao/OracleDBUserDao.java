@@ -55,8 +55,8 @@ public class OracleDBUserDao implements UserDao {
         ArrayList<User> allUsers = new ArrayList<User>();
 
         try {
-            PreparedStatement insertStatement = dbConnection.prepareStatement("SELECT * FROM users");
-            ResultSet result = insertStatement.executeQuery();
+            PreparedStatement getAllUsersStatement = dbConnection.prepareStatement("SELECT * FROM users");
+            ResultSet result = getAllUsersStatement.executeQuery();
 
             while ( result.next() ) {
                 allUsers.add(new User(UUID.fromString(result.getString(2)), result.getString(3)));
@@ -74,8 +74,8 @@ public class OracleDBUserDao implements UserDao {
         ArrayList<User> allUsers = new ArrayList<User>();
 
         try {
-            PreparedStatement insertStatement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_uuid='" + id + "'");
-            ResultSet result = insertStatement.executeQuery();
+            PreparedStatement selectUserByIDStatement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_uuid='" + id + "'");
+            ResultSet result = selectUserByIDStatement.executeQuery();
 
             while ( result.next() ) {
                 allUsers.add(new User(UUID.fromString(result.getString(2)), result.getString(3)));
@@ -100,6 +100,8 @@ public class OracleDBUserDao implements UserDao {
         DB.remove(userToDelete.get());
         return 1;
         */
+
+        // TODO
         return 0;
     }
 
@@ -116,6 +118,8 @@ public class OracleDBUserDao implements UserDao {
             return 1;
         }).orElse(0);
         */
+
+        // TODO
         return 0;
     }
 }
