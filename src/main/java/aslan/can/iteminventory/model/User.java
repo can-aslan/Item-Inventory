@@ -9,13 +9,15 @@ public class User {
     
     private final UUID id;
     private final String userName;
-    private ArrayList<String> items;
+    // private ArrayList<String> items;
 
+    /*
     public User() {
         id = null;
         userName = "null";
         items = null;
     }
+    */
 
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("userName") String userName) {
@@ -28,9 +30,10 @@ public class User {
             this.userName = userName;
         }
 
-        items = new ArrayList<String>();
+        // items = new ArrayList<String>();
     }
 
+    /* 
     public User(@JsonProperty("id") UUID id,
                 @JsonProperty("userName") String userName,
                 @JsonProperty("items") ArrayList<String> items) {
@@ -45,6 +48,7 @@ public class User {
 
         this.items = items;
     }
+    */
 
     public UUID getId() {
         return id;
@@ -54,6 +58,7 @@ public class User {
         return userName;
     }
 
+    /*
     public void addItem(String item) {
         items.add(item);
     }
@@ -68,4 +73,5 @@ public class User {
 
         return false;
     }
+    */
 }
