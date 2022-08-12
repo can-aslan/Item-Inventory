@@ -48,7 +48,7 @@
 			</plugin>
 		</plugins>
 
-		<finalName>item-inventory</finalName>
+		<finalName>iteminventory</finalName>
 	</build>
 
 </project>
