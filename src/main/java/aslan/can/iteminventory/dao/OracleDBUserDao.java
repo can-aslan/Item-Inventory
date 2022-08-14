@@ -20,7 +20,7 @@ public class OracleDBUserDao implements UserDao {
                 "jdbc:oracle:thin:@localhost:1521/xepdb1",
                 AppProperties.OracleUsername,
                 AppProperties.OraclePassword);
-            
+
             try {
                 PreparedStatement tableAccessStatement = dbConnection.prepareStatement(
                     "SELECT * FROM users");

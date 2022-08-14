@@ -20,7 +20,7 @@ public class OracleDBItemDao implements ItemDao {
                 "jdbc:oracle:thin:@localhost:1521/xepdb1",
                 AppProperties.OracleUsername,
                 AppProperties.OraclePassword);
-            
+
             try {
                 PreparedStatement tableAccessStatement = dbConnection.prepareStatement(
                     "SELECT * FROM items");
@@ -48,6 +48,7 @@ public class OracleDBItemDao implements ItemDao {
                 + item.getDesc() + "', '"
                 + item.getCategory() + "')");
             insertStatement.executeQuery();
+            insertItemDebug(ownerUUID, item.getTitle(), item.getDesc(), item.getCategory());
             return 1;
         }
         catch (Exception e) {
@@ -66,12 +67,6 @@ public class OracleDBItemDao implements ItemDao {
             ResultSet result = getAllItemsStatement.executeQuery();
 
             while ( result.next() ) {
-                System.out.println("------ITEM ADDED-------");
-                System.out.println("OwnerUUID: " + result.getString(2));
-                System.out.println("Title: " + result.getString(3));
-                System.out.println("Description: " + result.getString(4));
-                System.out.println("Category: " + result.getString(5));
-                System.out.println("------ITEM ADDED-------");
                 allItems.add(new Item(  UUID.fromString(result.getString(2)),
                                         result.getString(3),
                                         result.getString(4),
@@ -86,21 +81,23 @@ public class OracleDBItemDao implements ItemDao {
     }
 
     @Override
-    public Optional<Item> selectItemByID(UUID itemID) {
+    public Optional<Item> getItemsOfUserByID(UUID itemID) {
         // TODO Auto-generated method stub
         return Optional.empty();
     }
 
     @Override
     public int deleteItemByID(UUID itemID) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int updateItemByID(UUID itemID, Item newItem) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub (ADD ITEM UUID LATER FOR THIS AND UPDATEITEMBYID)
         return 0;
     }
     
+    private void insertItemDebug(UUID ownerUUID, String title, String desc, String category) {
+        System.out.println("------ITEM ADDED-------");
+        System.out.println("OwnerUUID: " + ownerUUID);
+        System.out.println("Title: " + title);
+        System.out.println("Description: " + desc);
+        System.out.println("Category: " + category.toLowerCase());
+        System.out.println("------ITEM ADDED-------");
+    }
 }
