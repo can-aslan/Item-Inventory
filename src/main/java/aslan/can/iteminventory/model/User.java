@@ -1,7 +1,6 @@
 package aslan.can.iteminventory.model;
 
 import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
@@ -22,10 +21,10 @@ public class User {
     }
 
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 }
