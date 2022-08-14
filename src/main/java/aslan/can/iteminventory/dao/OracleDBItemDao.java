@@ -66,6 +66,12 @@ public class OracleDBItemDao implements ItemDao {
             ResultSet result = getAllItemsStatement.executeQuery();
 
             while ( result.next() ) {
+                System.out.println("------ITEM ADDED-------");
+                System.out.println("OwnerUUID: " + result.getString(2));
+                System.out.println("Title: " + result.getString(3));
+                System.out.println("Description: " + result.getString(4));
+                System.out.println("Category: " + result.getString(5));
+                System.out.println("------ITEM ADDED-------");
                 allItems.add(new Item(  UUID.fromString(result.getString(2)),
                                         result.getString(3),
                                         result.getString(4),
