@@ -10,24 +10,23 @@ public class Item {
     private final UUID taskUUID;
     private final String title;
     private final String desc;
-    private final int category;
+    private final String category;
 
-    public Item(@JsonProperty("ownerUUID") UUID ownerUUID,
+    public Item(@JsonProperty("taskUUID") UUID taskUUID,
+                @JsonProperty("ownerUUID") UUID ownerUUID,
                 @JsonProperty("title") String title,
                 @JsonProperty("desc") String desc,
-                @JsonProperty("category") int category) {
+                @JsonProperty("category") String category) {
 
+        this.taskUUID = taskUUID;
         this.ownerUUID = ownerUUID;
-        this.taskUUID = UUID.randomUUID();
+        this.category = category.toLowerCase();
 
         if (title == null || title.isEmpty()) this.title = "No Title Provided";
         else this.title = title;
 
         if (desc == null || desc.isEmpty()) this.desc = "No Description Provided";
         else this.desc = desc;
-
-        if (category > 10) this.category = -1;
-        else this.category = category;
     }
 
     public UUID getOwnerUUID() {
@@ -42,7 +41,7 @@ public class Item {
         return this.desc;
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return this.category;
     }
 

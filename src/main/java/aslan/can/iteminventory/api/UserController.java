@@ -14,17 +14,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import aslan.can.iteminventory.model.Item;
 import aslan.can.iteminventory.model.User;
+import aslan.can.iteminventory.service.ItemService;
 import aslan.can.iteminventory.service.UserService;
 
 @RequestMapping("api/v1/user")
 @RestController
 public class UserController {
     private final UserService userService;
+    private final ItemService itemService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ItemService itemService) {
         this.userService = userService;
+        this.itemService = itemService;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -53,5 +57,16 @@ public class UserController {
     public String updateUser(@PathVariable("id") UUID id, @RequestBody User newUser) {
         if (userService.updateUserByID(id, newUser) == 1) return "User with UUID '" + id + "' updated successfully.";
         return "ERROR: Could not update user with UUID '" + id + "'.";
+    }
+
+    @PostMapping(path = "items/add{ownerUUID}")
+    public String addItem(@PathVariable("ownerUUID") UUID ownerUUID, @RequestBody Item item) {
+        itemService.addItem(ownerUUID, item);
+        return "Item added successfully.";
+    }
+
+    @GetMapping(path = "items")
+    public List<Item> getAllItems() {
+        return itemService.getAllItems();
     }
 }
