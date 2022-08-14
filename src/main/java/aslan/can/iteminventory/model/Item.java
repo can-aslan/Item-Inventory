@@ -7,18 +7,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Item {
     
     private final UUID ownerUUID;
-    private final UUID taskUUID;
     private final String title;
     private final String desc;
     private final String category;
 
-    public Item(@JsonProperty("taskUUID") UUID taskUUID,
-                @JsonProperty("ownerUUID") UUID ownerUUID,
+    public Item(@JsonProperty("ownerUUID") UUID ownerUUID,
                 @JsonProperty("title") String title,
                 @JsonProperty("desc") String desc,
                 @JsonProperty("category") String category) {
 
-        this.taskUUID = taskUUID;
         this.ownerUUID = ownerUUID;
         this.category = category.toLowerCase();
 
@@ -43,9 +40,5 @@ public class Item {
 
     public String getCategory() {
         return this.category;
-    }
-
-    public UUID getTaskUUID() {
-        return this.taskUUID;
     }
 }
