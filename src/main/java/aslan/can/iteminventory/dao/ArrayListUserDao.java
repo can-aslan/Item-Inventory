@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Repository;
 import aslan.can.iteminventory.model.User;
 
-@Repository("fakeDao")
-public class FakeUserDataAccessService implements UserDao {
+@Repository("arrayList")
+public class ArrayListUserDao implements UserDao {
 
     private static List<User> DB = new ArrayList<>();
 
