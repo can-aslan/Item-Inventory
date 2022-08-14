@@ -13,13 +13,12 @@ public class Item {
     private final int category;
 
     public Item(@JsonProperty("ownerUUID") UUID ownerUUID,
-                @JsonProperty("taskUUID") UUID taskUUID,
                 @JsonProperty("title") String title,
                 @JsonProperty("desc") String desc,
                 @JsonProperty("category") int category) {
 
         this.ownerUUID = ownerUUID;
-        this.taskUUID = taskUUID;
+        this.taskUUID = UUID.randomUUID();
 
         if (title == null || title.isEmpty()) this.title = "No Title Provided";
         else this.title = title;
