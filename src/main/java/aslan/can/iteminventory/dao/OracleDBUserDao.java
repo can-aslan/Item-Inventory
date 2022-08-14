@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import aslan.can.iteminventory.model.User;
 import java.sql.*;
 
-@Repository("oracle")
+@Repository("oracle-user")
 public class OracleDBUserDao implements UserDao {
 
     public static Connection dbConnection;

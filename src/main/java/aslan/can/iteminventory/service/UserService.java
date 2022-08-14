@@ -16,7 +16,7 @@ public class UserService {
     private final UserDao userDao;
     
     @Autowired
-    public UserService(@Qualifier("oracle") UserDao userDao) {
+    public UserService(@Qualifier("oracle-user") UserDao userDao) {
         this.userDao = userDao;
     }
 
