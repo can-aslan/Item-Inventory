@@ -59,7 +59,7 @@ public class UserController {
         return "ERROR: Could not update user with UUID '" + id + "'.";
     }
 
-    @PostMapping(path = "items/add{ownerUUID}")
+    @PostMapping(path = "items/add/{ownerUUID}")
     public String addItem(@PathVariable("ownerUUID") UUID ownerUUID, @RequestBody Item item) {
         itemService.addItem(ownerUUID, item);
         return "Item added successfully.";
