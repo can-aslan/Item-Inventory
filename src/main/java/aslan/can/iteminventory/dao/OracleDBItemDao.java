@@ -21,9 +21,9 @@ public class OracleDBItemDao implements ItemDao {
                 AppProperties.OracleUsername,
                 AppProperties.OraclePassword);
 
-            PreparedStatement del = dbConnection.prepareStatement(
-                "DROP TABLE items");
-            del.executeQuery();
+            // PreparedStatement del = dbConnection.prepareStatement(
+            //     "DROP TABLE items");
+            // del.executeQuery();
 
             try {
                 PreparedStatement tableAccessStatement = dbConnection.prepareStatement(
