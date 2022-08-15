@@ -87,9 +87,31 @@ public class OracleDBItemDao implements ItemDao {
     }
 
     @Override
-    public Optional<Item> getItemsOfUserByID(UUID itemID) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+    public List<Item> getItemsOfUserByID(UUID userUUID) {
+        ArrayList<Item> allItems = new ArrayList<Item>();
+
+        try {
+            PreparedStatement getAllItemsStatement = dbConnection.prepareStatement(
+                "SELECT * FROM items WHERE items.owner_uuid = '" + userUUID + "'");
+            ResultSet result = getAllItemsStatement.executeQuery();
+
+            while ( result.next() ) {
+                allItems.add(new Item(  UUID.fromString(result.getString(2)),
+                                        UUID.fromString(result.getString(3)),
+                                        result.getString(4),
+                                        result.getString(5),
+                                        result.getString(6)));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (allItems.isEmpty()) {
+            allItems.add(new Item("userHasNoItemsError"));
+        }
+
+        return allItems;
     }
 
     @Override

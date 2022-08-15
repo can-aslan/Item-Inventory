@@ -8,6 +8,6 @@ import aslan.can.iteminventory.model.Item;
 public interface ItemDao {
     int insertItem(UUID ownerUUID, Item item);
     List<Item> getAllItems();
-    Optional<Item> getItemsOfUserByID(UUID itemID);
+    List<Item> getItemsOfUserByID(UUID userUUID);
     int deleteItemByID(UUID itemID);
 }

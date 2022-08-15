@@ -21,6 +21,15 @@ public class Item {
         this.category = category;
     }  
 
+    // For output only (users without items)
+    public Item(String category) {
+        this.taskUUID = null;
+        this.ownerUUID = null;
+        this.title = "The specified user has no items.";
+        this.desc = "The specified user has no items.";
+        this.category = category;
+    }  
+
     public Item(@JsonProperty("ownerUUID") UUID ownerUUID,
                 @JsonProperty("title") String title,
                 @JsonProperty("desc") String desc,
