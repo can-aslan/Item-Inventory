@@ -77,7 +77,7 @@ public class UserController {
 
     @DeleteMapping(path = "items/del/{taskUUID}")
     public String deleteItemByID(@PathVariable("taskUUID") UUID taskUUID) {
-        if (itemService.deleteItemByID(taskUUID) == 1) return "Task with UUID '" + taskUUID + "' deleted successfully.";
+        if (itemService.deleteItemByID(taskUUID) == 1) return "Task with UUID '" + taskUUID + "' deleted successfully if it exists in the database.";
         return "ERROR: Could not delete task with UUID '" + taskUUID + "'.";
     }
 }
