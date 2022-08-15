@@ -30,4 +30,8 @@ public class ItemService {
     public List<Item> getItemsOfUserByID(UUID ownerUUID) {
         return itemDao.getItemsOfUserByID(ownerUUID);
     }
+
+    public int deleteItemByID(UUID taskUUID) {
+        return itemDao.deleteItemByID(taskUUID);
+    }
 }

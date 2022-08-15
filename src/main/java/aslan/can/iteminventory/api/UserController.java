@@ -74,4 +74,10 @@ public class UserController {
     public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
+
+    @DeleteMapping(path = "items/del/{taskUUID}")
+    public String deleteItemByID(@PathVariable("taskUUID") UUID taskUUID) {
+        if (itemService.deleteItemByID(taskUUID) == 1) return "Task with UUID '" + taskUUID + "' deleted successfully.";
+        return "ERROR: Could not delete task with UUID '" + taskUUID + "'.";
+    }
 }

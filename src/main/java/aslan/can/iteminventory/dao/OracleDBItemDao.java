@@ -115,8 +115,17 @@ public class OracleDBItemDao implements ItemDao {
 
     @Override
     public int deleteItemByID(UUID itemID) {
-        // TODO Auto-generated method stub (ADD ITEM UUID LATER FOR THIS AND UPDATEITEMBYID)
-        return 0;
+        try {
+            PreparedStatement deleteStatement = dbConnection.prepareStatement(
+                "DELETE FROM items WHERE items.task_uuid='" + itemID + "'");
+            deleteStatement.executeQuery();
+            System.out.println("Deleted item with task UUID " + itemID + " if it exists in the database.");
+            return 1;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
     
     private void insertItemDebug(UUID taskUUID, UUID ownerUUID, String title, String desc, String category) {
