@@ -6,16 +6,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Item {
     
+    private final UUID taskUUID;
     private final UUID ownerUUID;
     private final String title;
     private final String desc;
     private final String category;
 
+    // For output only
+    public Item(UUID taskUUID, UUID ownerUUID, String title, String desc, String category) {
+        this.taskUUID = taskUUID;
+        this.ownerUUID = ownerUUID;
+        this.title = title;
+        this.desc = desc;
+        this.category = category;
+    }  
+
     public Item(@JsonProperty("ownerUUID") UUID ownerUUID,
                 @JsonProperty("title") String title,
                 @JsonProperty("desc") String desc,
                 @JsonProperty("category") String category) {
-
+        
+        this.taskUUID = UUID.randomUUID();
         this.ownerUUID = ownerUUID;
         this.category = category.toLowerCase();
 
@@ -40,5 +51,9 @@ public class Item {
 
     public String getCategory() {
         return this.category;
+    }
+
+    public UUID getTaskUUID() {
+        return this.taskUUID;
     }
 }
