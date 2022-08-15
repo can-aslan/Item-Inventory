@@ -17,7 +17,7 @@ public class OracleDBItemDao implements ItemDao {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             dbConnection = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1527/xepdb1",
+                AppProperties.OracleLink,
                 AppProperties.OracleUsername,
                 AppProperties.OraclePassword);
 
