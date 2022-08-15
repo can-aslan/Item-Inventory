@@ -26,4 +26,8 @@ public class ItemService {
     public List<Item> getAllItems() {
         return itemDao.getAllItems();
     }
+
+    public List<Item> getItemsOfUserByID(UUID ownerUUID) {
+        return itemDao.getItemsOfUserByID(ownerUUID);
+    }
 }
