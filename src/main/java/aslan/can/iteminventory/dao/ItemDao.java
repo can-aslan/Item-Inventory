@@ -1,7 +1,6 @@
 package aslan.can.iteminventory.dao;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import aslan.can.iteminventory.model.Item;
 
