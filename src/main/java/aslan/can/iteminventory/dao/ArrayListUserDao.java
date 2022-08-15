@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Repository;
 import aslan.can.iteminventory.model.User;
 
+@Deprecated
 @Repository("arrayList-user")
 public class ArrayListUserDao implements UserDao {
 
