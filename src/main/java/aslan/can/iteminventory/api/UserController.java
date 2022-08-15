@@ -31,6 +31,9 @@ public class UserController {
         this.itemService = itemService;
     }
 
+    // ###########################
+    // ###### USER REQUESTS ######
+    // ###########################
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addUser(@RequestBody User user) {
         userService.addUser(user);
@@ -58,7 +61,13 @@ public class UserController {
         if (userService.updateUserByID(id, newUser) == 1) return "User with UUID '" + id + "' updated successfully.";
         return "ERROR: Could not update user with UUID '" + id + "'.";
     }
+    // ###############################
+    // ###### USER REQUESTS END ######
+    // ###############################
 
+    // ##################################
+    // ###### TASK (ITEM) REQUESTS ######
+    // ##################################
     @PostMapping(path = "items/{ownerUUID}/add")
     public String addItem(@PathVariable("ownerUUID") UUID ownerUUID, @RequestBody Item item) {
         itemService.addItem(ownerUUID, item);
@@ -80,4 +89,7 @@ public class UserController {
         if (itemService.deleteItemByID(taskUUID) == 1) return "Task with UUID '" + taskUUID + "' deleted successfully if it exists in the database.";
         return "ERROR: Could not delete task with UUID '" + taskUUID + "'.";
     }
+    // ######################################
+    // ###### TASK (ITEM) REQUESTS END ######
+    // ######################################
 }
