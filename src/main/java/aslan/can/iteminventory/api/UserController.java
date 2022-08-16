@@ -90,8 +90,9 @@ public class UserController {
         return "ERROR: Could not delete task with UUID '" + taskUUID + "'.";
     }
 
-    @GetMapping(path = "items/category/{category}")
+    @GetMapping(path = "items/category/list/{category}")
     public List<Item> getAllItemsByCategory(@PathVariable("category") String category) {
+        if (category.isBlank() || category.isEmpty()) category = "null";
         return itemService.getAllItemsByCategory(category);
     }
     // ######################################
