@@ -133,4 +133,32 @@ public class OracleDBItemDao implements ItemDao {
         System.out.println("Category: " + category.toLowerCase());
         System.out.println("------ITEM ADDED-------");
     }
+
+    @Override
+    public List<Item> getAllItemsByCategory(String category) {
+        ArrayList<Item> allItems = new ArrayList<Item>();
+
+        try {
+            PreparedStatement getAllItemsStatement = dbConnection.prepareStatement(
+                "SELECT * FROM items WHERE items.task_category = '" + category.toLowerCase() + "'");
+            ResultSet result = getAllItemsStatement.executeQuery();
+
+            while ( result.next() ) {
+                allItems.add(new Item(  UUID.fromString(result.getString(2)),
+                                        UUID.fromString(result.getString(3)),
+                                        result.getString(4),
+                                        result.getString(5),
+                                        result.getString(6)));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (allItems.isEmpty()) {
+            allItems.add(new Item("userHasNoItemsWithCategoryError"));
+        }
+
+        return allItems;
+    }
 }

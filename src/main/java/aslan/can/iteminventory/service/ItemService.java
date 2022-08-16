@@ -34,4 +34,8 @@ public class ItemService {
     public int deleteItemByID(UUID taskUUID) {
         return itemDao.deleteItemByID(taskUUID);
     }
+
+    public List<Item> getAllItemsByCategory(String category) {
+        return itemDao.getAllItemsByCategory(category);
+    }
 }

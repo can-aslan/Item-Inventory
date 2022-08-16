@@ -89,6 +89,11 @@ public class UserController {
         if (itemService.deleteItemByID(taskUUID) == 1) return "Task with UUID '" + taskUUID + "' deleted successfully if it exists in the database.";
         return "ERROR: Could not delete task with UUID '" + taskUUID + "'.";
     }
+
+    @GetMapping(path = "items/category/{category}")
+    public List<Item> getAllItemsByCategory(@PathVariable("category") String category) {
+        return itemService.getAllItemsByCategory(category);
+    }
     // ######################################
     // ###### TASK (ITEM) REQUESTS END ######
     // ######################################

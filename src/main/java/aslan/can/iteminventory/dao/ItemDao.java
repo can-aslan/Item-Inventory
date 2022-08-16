@@ -9,4 +9,5 @@ public interface ItemDao {
     List<Item> getAllItems();
     List<Item> getItemsOfUserByID(UUID userUUID);
     int deleteItemByID(UUID itemID);
+    List<Item> getAllItemsByCategory(String category);
 }
